@@ -357,6 +357,168 @@ section {
     }
 }
 
+/* Services Section */
+.services {
+    background-color: var(--light-gray);
+}
+
+.section__subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--gray);
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.phases__grid {
+    display: grid;
+    gap: var(--spacing-xl);
+    grid-template-columns: 1fr;
+}
+
+.problem-card__services {
+    list-style: none;
+    text-align: left;
+    margin-bottom: var(--spacing-lg);
+}
+
+.problem-card__services li {
+    color: var(--gray);
+    margin-bottom: var(--spacing-sm);
+    padding-left: var(--spacing-lg);
+    position: relative;
+}
+
+.problem-card__services li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .phases__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .phases__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Serious Infractions Section */
+.defesa-graves {
+    background-color: var(--white);
+}
+
+.serious-fines__grid {
+    display: grid;
+    gap: var(--spacing-xl);
+    grid-template-columns: 1fr;
+}
+
+.infraction-card {
+    background-color: var(--light-gray);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-base);
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.infraction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.infraction-card--alert {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 2px solid #dc2626;
+}
+
+.infraction-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-base);
+}
+
+.infraction-card--alert .infraction-card__icon {
+    background-color: #dc2626;
+}
+
+.infraction-card__title {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-base);
+    font-size: var(--font-size-lg);
+}
+
+.infraction-card--alert .infraction-card__title {
+    color: #dc2626;
+    font-weight: 800;
+}
+
+.infraction-card__consequence {
+    color: var(--gray);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+}
+
+.infraction-card--alert .infraction-card__consequence {
+    color: #991b1b;
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .serious-fines__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .serious-fines__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Points Information Section */
+.info-pontos {
+    background-color: var(--light-gray);
+}
+
+.points-info {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.points-info__text {
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+}
+
+.points-info__text strong {
+    color: var(--primary-color);
+}
+
+.points-info__cta {
+    margin-top: var(--spacing-xl);
+}
+
 /* How It Works Section */
 .how-it-works {
     background-color: var(--white);

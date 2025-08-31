@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.problem-card, .step, .feature, .testimonial');
+    const animateElements = document.querySelectorAll('.problem-card, .step, .feature, .testimonial, .infraction-card, .points-info');
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
