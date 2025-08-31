@@ -59,11 +59,11 @@ Update all references to `despalto.com.br` with your actual domain:
 - Meta tags in HTML files
 - JavaScript configurations
 
-### 6. Images
+### 6. Images (completed)
 Add the following images to `assets/images/`:
-- `logo.png` - Company logo (40x40px minimum)
-- `hero-cnh.jpg` - Hero section image
-- `favicon.ico` - Website favicon
+- [x] `logo.png` - Company logo (40x40px minimum)
+- [x] `hero-cnh.jpg` - Hero section image
+- [x] `favicon.ico` - Website favicon
 
 ### 7. Performance Optimization
 - Optimize all images (compress, use WebP when possible)
@@ -105,10 +105,10 @@ Update the contact email in footer:
 
 ## Legal Compliance
 
-### Required Legal Pages (to be created):
-- Privacy Policy (`politica-privacidade.html`)
-- Terms of Service (`termos-servico.html`)
-- Cookie Policy (`politica-cookies.html`)
+### Required Legal Pages (completed):
+- [x] Privacy Policy (`politica-privacidade.html`)
+- [x] Terms of Service (`termos-servico.html`)
+- [x] Cookie Policy (`politica-cookies.html`)
 
 ### LGPD Compliance:
 - Add cookie consent banner
@@ -133,7 +133,7 @@ Update the contact email in footer:
 - [ ] Analytics configured
 - [ ] All placeholder content replaced
 - [ ] Contact information updated
-- [ ] Legal pages created
+- [x] Legal pages created
 - [ ] Performance optimized
 - [ ] SEO configured
 - [ ] Social media integration

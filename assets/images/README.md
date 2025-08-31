@@ -1,16 +1,25 @@
-# Image Placeholders
+# Image Assets
 
 This directory contains placeholder images for the Despalto website.
 
-## Required Images:
+## Current Images:
 
-1. **logo.png** - Company logo (40x40px recommended)
-2. **hero-cnh.jpg** - Hero section image showing CNH/license related imagery
-3. **favicon.ico** - Website favicon
+1. **logo.png** ✅ - Company logo placeholder (80x40px, blue background with white "D")
+2. **hero-cnh.jpg** ✅ - Hero section placeholder image (1200x800px, light blue with "CNH Defesa" text)
+3. **favicon.ico** ✅ - Website favicon (32x32px, blue background with white "D")
+
+## Status:
+All essential placeholder images have been created. The website now displays properly without broken image links.
+
+## For Production Use:
+Replace these placeholder images with professional, branded images:
+- **Logo**: Should match company branding and be high resolution
+- **Hero Image**: Should feature relevant imagery (traffic, legal, or professional themes)
+- **Favicon**: Should match the final logo design
 
 ## Recommended Specifications:
 
-- **Logo**: PNG format, transparent background, 40x40px minimum
+- **Logo**: PNG format, transparent background, 40x40px minimum (current: 80x40px)
 - **Hero Image**: JPEG format, 1200x800px minimum, optimized for web
 - **Favicon**: ICO format, 32x32px
 
