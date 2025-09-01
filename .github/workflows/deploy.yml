@@ -1,21 +1,17 @@
 name: Deploy to VPS
 
-# Gatilho: Rodar esta automação toda vez que houver um 'push' na branch 'principal'
 on:
   push:
     branches:
       - principal
 
-# Tarefas a serem executadas
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Baixa o código do seu repositório para a máquina do GitHub Actions
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Envia os arquivos para o seu servidor VPS
       - name: Deploy to Server
         uses: appleboy/ssh-action@v1.0.3
         with:
