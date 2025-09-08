@@ -1,17 +1,12 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://despalto.com.br/sitemap.xml
+# Sitemap location (update to production domain if different)
+Sitemap: https://despauto.com.br/sitemap.xml
 
-# Disallow unnecessary files
-Disallow: /assets/
-Disallow: /*.css$
-Disallow: /*.js$
-Disallow: /*.json$
-
-# Allow specific asset types that should be indexed
-Allow: /assets/images/
+# Allow crawlers to access CSS/JS/images so pages can be rendered correctly
+# Block only sensitive or admin paths (none present in this static site by default)
+# Disallow: /admin/
 
 # Crawl delay (optional)
 Crawl-delay: 1

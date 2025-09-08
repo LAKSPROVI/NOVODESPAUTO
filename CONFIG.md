@@ -1,4 +1,4 @@
-# Despalto Website Configuration
+# Despauto Website Configuration
 
 ## Required Configuration Steps
 
@@ -54,7 +54,7 @@ Replace `YOUR_PIXEL_ID` with your actual Meta Pixel ID.
 - Update all URLs to use HTTPS
 
 ### 5. Domain Configuration
-Update all references to `despalto.com.br` with your actual domain:
+Update all references to `despalto.com.br` (or `despauto.com.br`) with your actual domain:
 - `sitemap.xml`
 - Meta tags in HTML files
 - JavaScript configurations
@@ -72,8 +72,7 @@ Add the following images to `assets/images/`:
 - Consider using a CDN for static assets
 
 ### 8. Email Configuration
-Update the contact email in footer:
-- Replace `contato@despalto.com.br` with actual email address
+If you want to publish an email address, update the footer HTML files; email addresses were removed from the footers in this branch.
 
 ## Server Requirements
 
@@ -138,3 +137,21 @@ Update the contact email in footer:
 - [ ] SEO configured
 - [ ] Social media integration
 - [ ] Backup system implemented
+
+## Recent repository updates (automated edits)
+
+- Added mobile menu CSS for `.nav__menu.show` so the toggle in `assets/js/script.js` displays correctly on small screens.
+- Centralized FAQ toggle logic and lazy-loading into `assets/js/script.js`; inline FAQ scripts in `defesa-cnh-suspensa.html` and `defesa-lei-seca.html` were commented out to avoid duplication.
+- Guarded Service Worker registration to avoid errors when `/sw.js` is not present.
+- Updated `robots.txt` to allow crawlers to access CSS/JS/images (removed rules that blocked assets).
+
+Please update the following placeholders after deployment:
+- `assets/js/script.js` -> `whatsappNumber` (set your real number in international format, e.g. `5511999999999`).
+- Replace contact phone/email in all HTML footers.
+- Provide `sw.js` if PWA support is desired, or remove the registration block.
+
+Actions applied now:
+
+- A minimal `sw.js` was added at repository root to provide basic offline caching for `/`, `/index.html`, `assets/css/style.css`, and `assets/js/script.js`.
+- Implemented a basic cookie consent banner (JS + CSS) that stores consent in localStorage.
+- Created placeholder legal pages: `politica-privacidade.html` and `politica-cookies.html` — update with your legal text before publishing.

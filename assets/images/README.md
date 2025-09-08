@@ -1,6 +1,6 @@
 # Image Placeholders
 
-This directory contains placeholder images for the Despalto website.
+This directory contains placeholder images for the Despauto website.
 
 ## Required Images:
 

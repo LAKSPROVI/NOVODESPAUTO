@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="80" viewBox="0 0 240 80" role="img" aria-labelledby="lv2Title lv2Desc">
+  <title id="lv2Title">Despauto — Variant 2</title>
+  <desc id="lv2Desc">Clean monogram inside circle with bold wordmark.</desc>
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0%" stop-color="#062b6b"/>
+      <stop offset="100%" stop-color="#25d366"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="40" r="32" fill="url(#g2)" />
+  <g transform="translate(22,18) scale(1.1)">
+    <path d="M8 6 L18 6 C26 6 30 12 30 20 C30 28 24 32 18 32 L8 32 Z" fill="#fff"/>
+    <rect x="4" y="6" width="6" height="26" rx="3" fill="#fff"/>
+  </g>
+  <text x="92" y="44" font-family="Inter, Arial, sans-serif" font-size="28" fill="#0b1220" font-weight="800" dominant-baseline="middle">Despauto</text>
+</svg>

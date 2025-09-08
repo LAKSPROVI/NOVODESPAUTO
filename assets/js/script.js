@@ -1,13 +1,13 @@
 // WhatsApp Integration and Mobile Menu
 document.addEventListener('DOMContentLoaded', function() {
-    // WhatsApp phone number (update with actual number)
-    const whatsappNumber = '5511999999999'; // Format: country code + area code + number
+    // WhatsApp phone number (configured)
+    const whatsappNumber = '5515996691637'; // Format: country code + area code + number
     
     // WhatsApp messages for different CTAs
     const whatsappMessages = {
-        hero: 'Olá! Visitei o site da Despalto e preciso de ajuda urgente com minha CNH. Pode me orientar?',
-        final: 'Olá! Visitei o site da Despalto e preciso de análise gratuita do meu caso. Pode me ajudar?',
-        float: 'Olá! Visitei o site da Despalto e preciso de ajuda com minha CNH. Pode me orientar?'
+        hero: 'Olá! Visitei o site da Despauto e preciso de ajuda urgente com minha CNH. Pode me orientar?',
+        final: 'Olá! Visitei o site da Despauto e preciso de análise gratuita do meu caso. Pode me ajudar?',
+        float: 'Olá! Visitei o site da Despauto e preciso de ajuda com minha CNH. Pode me orientar?'
     };
     
     // Mobile menu toggle
@@ -33,6 +33,65 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = document.querySelectorAll('.nav__link');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
+        // FAQ Toggle Script (centralized)
+        (function initFAQ() {
+            try {
+                const faqItems = document.querySelectorAll('.faq-item__question');
+                if (!faqItems || faqItems.length === 0) return;
+
+                faqItems.forEach(item => {
+                    // Ensure the corresponding answer exists
+                    const answer = item.nextElementSibling;
+                    if (!answer) return;
+
+                    // initialize hidden state for accessibility
+                    answer.style.display = 'none';
+
+                    item.setAttribute('role', 'button');
+                    item.setAttribute('tabindex', '0');
+
+                    const toggle = function() {
+                        // Close other open items
+                        faqItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                const otherAnswer = otherItem.nextElementSibling;
+                                const otherIcon = otherItem.querySelector('i');
+                                if (otherAnswer) otherAnswer.style.display = 'none';
+                                if (otherIcon) {
+                                    otherIcon.classList.remove('fa-minus-circle');
+                                    otherIcon.classList.add('fa-question-circle');
+                                }
+                            }
+                        });
+
+                        const icon = item.querySelector('i');
+                        if (answer.style.display === 'block') {
+                            answer.style.display = 'none';
+                            if (icon) {
+                                icon.classList.remove('fa-minus-circle');
+                                icon.classList.add('fa-question-circle');
+                            }
+                        } else {
+                            answer.style.display = 'block';
+                            if (icon) {
+                                icon.classList.remove('fa-question-circle');
+                                icon.classList.add('fa-minus-circle');
+                            }
+                        }
+                    };
+
+                    item.addEventListener('click', toggle);
+                    item.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            toggle();
+                        }
+                    });
+                });
+            } catch (err) {
+                console.warn('FAQ init error:', err);
+            }
+        })();
                 navMenu.classList.remove('show');
                 const icon = navToggle.querySelector('i');
                 icon.classList.remove('fa-times');
@@ -48,6 +107,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Hero CTA
+        // Lazy loading for images
+        (function initLazyLoading() {
+            try {
+                // Prefer native lazy loading
+                const imgs = document.querySelectorAll('img');
+                imgs.forEach(img => {
+                    if (!('loading' in HTMLImageElement.prototype)) return;
+                    // set loading attr if not present
+                    if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+                });
+
+                // Fallback: observe images with data-src (if any)
+                const dataSrcImages = document.querySelectorAll('img[data-src]');
+                if (dataSrcImages.length === 0) return;
+
+                const imageObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset && img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                            }
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                dataSrcImages.forEach(img => imageObserver.observe(img));
+            } catch (err) {
+                console.warn('Lazy-loading init error:', err);
+            }
+        })();
     const heroCTA = document.getElementById('hero-cta');
     if (heroCTA) {
         heroCTA.addEventListener('click', function(e) {
@@ -61,6 +153,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     event_label: 'Hero CTA',
                     value: 1
                 });
+    // Service Worker registration (guarded)
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            // Try to fetch the service worker script before registering to avoid 404
+            fetch('/sw.js', { method: 'HEAD' }).then(resp => {
+                if (resp.ok) {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                            console.log('ServiceWorker registration successful');
+                        })
+                        .catch(function(error) {
+                            console.log('ServiceWorker registration failed', error);
+                        });
+                } else {
+                    // sw.js not present - skip registration
+                    console.log('No service worker to register (sw.js missing)');
+                }
+            }).catch(err => {
+                console.log('Service worker check failed:', err);
+            });
+        });
+    }
             }
         });
     }
@@ -86,6 +200,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Floating WhatsApp button
     const whatsappBtn = document.getElementById('whatsapp-btn');
     if (whatsappBtn) {
+        // Ensure the visible phone number is shown next to the icon without changing the icon
+        try {
+            // formatted display: +55 (15) 99669-1637
+            const formatted = '+55 (15) 99669-1637';
+            const numberEl = document.createElement('span');
+            numberEl.className = 'whatsapp-float__number';
+            numberEl.setAttribute('aria-hidden', 'false');
+            numberEl.textContent = formatted;
+            // insert into parent (.whatsapp-float) so it appears left of the round button
+            const floatWrapper = document.getElementById('whatsapp-float');
+            if (floatWrapper && !floatWrapper.querySelector('.whatsapp-float__number')) {
+                floatWrapper.insertBefore(numberEl, whatsappBtn);
+            }
+        } catch (err) {
+            console.warn('Could not render WhatsApp number:', err);
+        }
         whatsappBtn.addEventListener('click', function(e) {
             e.preventDefault();
             window.open(createWhatsAppURL(whatsappMessages.float), '_blank');
@@ -251,13 +381,40 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cookie consent (basic implementation)
     function showCookieConsent() {
-        const consent = localStorage.getItem('cookieConsent');
-        if (!consent) {
-            // Could show cookie banner here
-            console.log('Cookie consent needed');
+        try {
+            const consent = localStorage.getItem('cookieConsent');
+            if (consent) return; // already accepted
+
+            // Build banner element
+            const banner = document.createElement('div');
+            banner.className = 'cookie-consent';
+            banner.setAttribute('role', 'dialog');
+            banner.setAttribute('aria-live', 'polite');
+            banner.innerHTML = `
+                <div class="cookie-consent__inner container">
+                    <div class="cookie-consent__text">
+                        Usamos cookies para melhorar sua experi eancia. Ao continuar, voc ea concorda com nossa <a href="politica-cookies.html">Pol edtica de Cookies</a> e <a href="politica-privacidade.html">Pol edtica de Privacidade</a>.
+                    </div>
+                    <div class="cookie-consent__actions">
+                        <button class="btn btn--secondary cookie-accept">Aceitar</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(banner);
+
+            const acceptBtn = banner.querySelector('.cookie-accept');
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'true');
+                banner.style.opacity = '0';
+                banner.style.transform = 'translateY(20px)';
+                setTimeout(() => banner.remove(), 300);
+            });
+        } catch (err) {
+            console.warn('Cookie consent error:', err);
         }
     }
-    
+
     // Call cookie consent check
     showCookieConsent();
     
